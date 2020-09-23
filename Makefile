@@ -24,7 +24,7 @@ TOP := top
 
 
 
-OPT_FLAGS ?= -O3 --trace --trace-max-array 128 --unroll-count 128
+OPT_FLAGS ?= -O3 --unroll-count 128 --trace --trace-max-array 128 
 
 VERILATOR_OPTS ?= \
 	$(OPT_FLAGS) 		\
@@ -36,7 +36,7 @@ VERILATOR_OPTS ?= \
 	--Wno-lint 			\
 	--cc 						\
 	--autoflush 		\
-	--trace
+	--dump-treei 9  
 
 
 
@@ -54,13 +54,13 @@ VERILATOR_ROOT ?= /home/james/verilator
 VERILATOR = $(VERILATOR_ROOT)/bin/verilator
 
 default:
-	@echo "-- Verilator hello-world simple example"
-	@echo "-- VERILATE ----------------"
-	$(VERILATOR) $(VERILATOR_OPTS) --exe $(TOP).sv $(TB)
-	@echo "-- COMPILE -----------------"
-	$(MAKE) -j 4 -C obj_dir -f V$(TOP).mk
+	#@echo "-- Verilator hello-world simple example"
+	#@echo "-- VERILATE ----------------"
+	#$(VERILATOR) $(VERILATOR_OPTS) --exe $(TOP).sv $(TB)
+	#@echo "-- COMPILE -----------------"
+	$(MAKE) -j 4 -C modified_out -f V$(TOP).mk
 	@echo "-- RUN ---------------------"
-	obj_dir/V$(TOP)
+	modified_out/V$(TOP)
 	@echo "-- DONE --------------------"
 	@echo "Note: Once this example is understood, see examples/tracing_c."
 	@echo "Note: Also see the EXAMPLE section in the verilator manpage/document."
