@@ -44,8 +44,11 @@ fn to_rolled(line: &str) -> Option<String> {
         let a = innermost_idx.get(0)
         .unwrap()
         .as_str();
-        let loc = rstr.rfind(a).unwrap() -1;
-        rstr.replace_range(loc..loc+a.len()+2,format!("{}{}",indices.as_str(),a).as_str());
+        let loc = rstr.rfind(a).unwrap();
+        
+        
+        
+        rstr.replace_range(loc..loc+a.len(),format!("{}{}",indices.as_str(),a).as_str());
         Some(rstr)
     } else {
         if start_idx != 0 {
@@ -120,6 +123,23 @@ fn main()  -> std::io::Result<()> {
     }
 
     Ok(())
+}
+
+
+mod tests {
+    use crate::to_rolled;
+
+    #[test]
+    fn linetest() {
+        let tstr =  "vlTOPp->top__DOT__sum_out[0x18U] = ((vlTOPp->top__DOT__gen1__BRA__1__KET____DOT__gen2__BRA__8__KET____DOT__example__DOT__flops[4U] ";
+        let out_str : String = to_rolled(tstr).unwrap();
+        assert_eq!(out_str.as_str(),"vlTOPp->top__DOT__sum_out[0x18U] = ((vlTOPp->top__DOT__gen1____DOT__gen2____DOT__example__DOT__flops[1][8][4U] ");
+
+
+
+    }
+
+
 }
 
 

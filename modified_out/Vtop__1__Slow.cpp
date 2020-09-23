@@ -24,9 +24,9 @@ void Vtop::_eval_settle(Vtop__Syms* __restrict vlSymsp) {
     Vtop* const __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
     // Body
     vlTOPp->_settle__TOP__2(vlSymsp);
-    vlTOPp->__Vm_traceActivit[2U]= 1U;
-    vlTOPp->__Vm_traceActivit[1U]= 1U;
-    vlTOPp->__Vm_traceActivit[0U]= 1U;
+    vlTOPp->__Vm_traceActivity[2U] = 1U;
+    vlTOPp->__Vm_traceActivity[1U] = 1U;
+    vlTOPp->__Vm_traceActivity[0U] = 1U;
 }
 
 void Vtop::_ctor_var_reset() {
